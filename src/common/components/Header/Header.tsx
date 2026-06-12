@@ -5,8 +5,18 @@ import logoUrl from './../../../assets/logo-tmdb.svg'
 import { NavLink } from 'react-router'
 import Switch from '@mui/material/Switch'
 import { PATH } from '../../constants/path'
+import { useAppSelector } from '../../hooks/useAppSelector'
+import { changeThemeModeAC, selectThemeMode } from '../../../app/app-slice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 
 export const Header = () => {
+    const themeMode = useAppSelector(selectThemeMode)
+    const dispatch = useAppDispatch()
+
+    const changeTheme = () => {
+        dispatch(changeThemeModeAC({ themeMode: themeMode === 'dark' ? 'light' : 'dark' }))
+    }
+
     return (
         <AppBar>
             <Toolbar>
@@ -21,7 +31,7 @@ export const Header = () => {
                         <NavLink to={PATH.FAVORITES}>Favorites</NavLink>
                     </div>
 
-                    <Switch onChange={() => { "функция изменения темы" }} />
+                    <Switch checked={themeMode === 'dark'} onChange={changeTheme} />
                 </Container>
             </Toolbar>
         </AppBar>
