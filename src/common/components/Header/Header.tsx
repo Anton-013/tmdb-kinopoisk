@@ -1,13 +1,14 @@
 import AppBar from '@mui/material/AppBar'
 import Container from '@mui/material/Container'
 import Toolbar from '@mui/material/Toolbar'
-import logoUrl from './../../../assets/logo-tmdb.svg'
+import logoUrl from '../../../assets/logo-tmdb.svg'
 import { NavLink } from 'react-router'
 import Switch from '@mui/material/Switch'
+import { selectThemeMode, changeThemeModeAC } from '../../../app/app-slice'
 import { PATH } from '../../constants/path'
-import { useAppSelector } from '../../hooks/useAppSelector'
-import { changeThemeModeAC, selectThemeMode } from '../../../app/app-slice'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
+import styles from './Header.module.css'
 
 export const Header = () => {
     const themeMode = useAppSelector(selectThemeMode)
@@ -20,10 +21,10 @@ export const Header = () => {
     return (
         <AppBar>
             <Toolbar>
-                <Container>
-                    <NavLink to={PATH.MAIN}><img src={logoUrl} alt='TMDB' /></NavLink>
+                <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <NavLink to={PATH.MAIN} ><img src={logoUrl} alt='TMDB' className={styles.img} /></NavLink>
 
-                    <div>
+                    <div className={styles.navLink}>
                         <NavLink to={PATH.MAIN}>Main</NavLink>
                         <NavLink to={PATH.CATEGORY}>Category Movies</NavLink>
                         <NavLink to={PATH.FILTERED}>Filtered Movies</NavLink>
