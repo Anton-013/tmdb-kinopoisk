@@ -1,0 +1,1 @@
+export type TypeCategory = 'popular' | 'now_playing' | 'top_rated' | 'upcoming'
